@@ -5,9 +5,10 @@
 // the function signature and body to return `Result<String, String>` instead
 // of `Option<String>`.
 fn generate_nametag_text(name: String) -> Result<String, String> {
-    match name.is_empty() {
-        Ok(name) => name,
-        Err(error) => panic!("Couldn't generate text: {error:?}")
+    if name.is_empty() {
+        Err("Empty names aren't allowed".to_string())       
+    } else {
+        Ok(format!("Hi! My name is {name}"))
     }
 }
 
